@@ -6,14 +6,9 @@ import Login from './pages/Login'
 import Register from './pages/Register'
 import {Toaster} from "react-hot-toast"
 import "./App.css"
-import { useSelector } from 'react-redux'
+
 
 const App = () => {
-  // const loading = useSelector(state=>state.auth.loading)
- 
-  // if(loading){
-  //   return <p>Loading...</p>
-  // }
  
   return (
     <BrowserRouter>

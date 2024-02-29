@@ -33,7 +33,7 @@ const Header = () => {
                 user ? <>
                     <button className='form-btn' onClick={handleLogout}>Logout</button>
                 </> : <> <Link to={"/register"}>Register</Link>
-                    <Link to={"/Login"}>Login</Link></>
+                    <Link to={"/login"}>Login</Link></>
             }
         </nav>
     )

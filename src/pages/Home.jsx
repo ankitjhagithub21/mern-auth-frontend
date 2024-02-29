@@ -2,11 +2,13 @@ import React, { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from "react-redux"
 import { login, setLoading } from '../redux/slices/authSlice'
 import axios from "axios"
+import Loading from './Loading'
+import { Navigate } from 'react-router-dom'
 axios.defaults.withCredentials = true
 const Home = () => {
     const {user,loading} = useSelector(state => state.auth)
-    
     const dispatch = useDispatch()
+
     const getUser = async () => {
         dispatch(setLoading(true))
         try {
@@ -25,23 +27,28 @@ const Home = () => {
     }
 
     useEffect(() => {
-        if (!user) {
-            getUser()
-        }
+        
+        getUser()
+        
     }, [])
+
     if(loading){
-        return <p>Loading...</p>
+        return <Loading/>
+    }
+
+    if(!user){
+        return <Navigate to={"/login"}/>
     }
 
     return (
-        <section>
+        <>
 
             {
 
                 user ? <h2>Welcome {user.name}</h2> : <h2>User not found.</h2>
             }
 
-        </section>
+        </>
     )
 }
 

@@ -1,14 +1,15 @@
 import React from 'react'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import { useDispatch } from 'react-redux'
-import { useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { Link, Navigate, useNavigate } from 'react-router-dom'
 import { login } from '../redux/slices/authSlice'
 const Login = () => {
     const navigate = useNavigate()
     const dispatch = useDispatch()
-
-    const initialData = {
+    const currUser = useSelector(state=>state.auth.user)
+    
+     const initialData = {
        
         email:"",
         password:"",
@@ -52,12 +53,17 @@ const Login = () => {
 
         }catch(error){
             console.log(error)
+            toast.error("Login Failed.")
         }
         finally{
             setLoading(false)
         }
     }
 
+   
+    if(currUser){
+        return <Navigate to={"/"}/>
+    }
   return (
 
     <section>
@@ -69,8 +75,9 @@ const Login = () => {
 
                 <input type="password"  placeholder='Enter password' name="password" className='form-input' value={user.password} onChange={handleChange} required autoComplete='off'/>
                 <button className='form-btn' type='Submit'>{loading ? 'Loading...':'Login'}</button>
+                <p>New User ? <Link to={"/register"}>Register Here</Link></p>
             </form>
-
+            
         </div>
     </section>
   )

@@ -1,10 +1,12 @@
 import React from 'react'
 import { useState } from 'react'
 import toast from 'react-hot-toast'
-import { useNavigate } from 'react-router-dom'
-
+import { useSelector } from 'react-redux'
+import { Navigate, useNavigate } from 'react-router-dom'
+import {Link} from  "react-router-dom"
 const Register = () => {
     const navigate = useNavigate()
+    const currUser = useSelector(state=>state.auth.user)
     const initialData = {
         name:"",
         email:"",
@@ -46,10 +48,14 @@ const Register = () => {
 
         }catch(error){
             console.log(error)
+            toast.error("Registration Failed.")
         }
         finally{
             setLoading(false)
         }
+    }
+    if(currUser){
+        return <Navigate to={"/"}/>
     }
 
   return (
@@ -64,6 +70,7 @@ const Register = () => {
 
                 <input type="password"  placeholder='Enter password' name="password" className='form-input' value={user.password} onChange={handleChange} required autoComplete='off'/>
                 <button className='form-btn' type='Submit'>{loading ? 'Loading...':'Register'}</button>
+                <p>Already have an account ? <Link to={"/login"}>Login</Link></p>
             </form>
 
         </div>

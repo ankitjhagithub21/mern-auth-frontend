@@ -12,6 +12,21 @@ body{
   font-family: "Ubuntu", sans-serif;
 }
 button{cursor: pointer;}
+section{
+  min-height: 100vh;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 99;
+  background-color: white;
+  padding: 15px;
+
+}
 
 .navbar{
   background-color: rgba(21, 15, 15, 0.533);
@@ -28,9 +43,10 @@ button{cursor: pointer;}
 }
 .form-container{
   width: 500px;
-  margin: auto;
-  margin-top: 50px;
-  padding: 20px;
+   background-color: whitesmoke;
+   border-radius: 10px;
+  padding: 30px;
+  box-shadow: rgba(0, 0, 0, 0.19) 0px 10px 20px, rgba(0, 0, 0, 0.23) 0px 6px 6px;
 }
 .form{
   display:flex;
@@ -55,6 +71,7 @@ button{cursor: pointer;}
   text-align: center;
   font-size: 40px;
 }
+
 
 @media (max-width:768px) {
   .form-container{
